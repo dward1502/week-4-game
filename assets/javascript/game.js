@@ -1,6 +1,7 @@
 
 //Global Variables
 //==========================================
+
 var rNumtopaz;
 var rNumberyl;
 var rNumtourmaline;
@@ -10,6 +11,9 @@ var userTotal = 0;
 var total = 0;
 var wins = 0;
 var loss = 0;
+$('#wins').append(wins);
+$('#losses').append(loss);
+$('#score').append(userTotal);
 
 
 
@@ -26,9 +30,11 @@ function initializeGame() {
     rNumtourmaline = Math.ceil(Math.random() * 12);
     rNumLapis = Math.ceil(Math.random() * 12);    
     //need to Add update HTML game field using jQuery
+    
     $('#total').append(total);  
 
 }
+
 //Reset 
 function reset(){
     //Clears previous total
@@ -49,13 +55,15 @@ function winLose() {
         wins++;
         alert("Congratulations you guessed the correct amount of crystals!");
         console.log("Wins: " + wins);
+        //send to html
         $('#wins').empty();
         $('#wins').append(wins);
+        //game reset and re initialize
         reset();
         initializeGame();
 
-    } else if (userTotal > total) {
-        loss = loss + 1;
+    }else if (userTotal > total) {
+        loss++;
         alert("I am sorry your crystals do not equal the correct total!");
         console.log("Loss: " + loss);
         $('#losses').empty();
@@ -64,10 +72,6 @@ function winLose() {
         initializeGame();
 
     }
-}
-//Add user crystal guesses (still have to figure this out)
-function updateHTML() {
-
 }
 // Functions for the crystal buttons
 $(".gem1").on("click", function () {
